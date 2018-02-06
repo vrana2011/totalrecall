@@ -1,3 +1,5 @@
+import SpeechToText from 'speech-to-text';
+
 var express = require('express');
 var router = express.Router();
 
