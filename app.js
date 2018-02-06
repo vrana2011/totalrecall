@@ -5,7 +5,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-var index = require('./routes/index');
+// var index = require('./routes/index');
 var users = require('./routes/users');
 var listens = require('./routes/listens');
 
@@ -23,9 +23,16 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', index);
+// app.use('/', index);
 app.use('/users', users);
 app.use('/listens', listens);
+
+app.use(express.static(__dirname + '/public'));
+//Store all HTML files in public folder.
+app.get('/',function(req,res){
+  res.sendFile('index.html');
+  //It will find and locate index.html from public
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
