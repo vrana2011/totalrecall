@@ -1,4 +1,24 @@
 <html>
+
+<style>
+    .results {
+        font-size: 24px;
+        padding: 15px;
+        text-align: center;
+        min-height: 150px;
+    } 
+    .button {
+        background-color: #000000;
+        -background-color: #cc0000;
+        color: #FFFFFF;
+        font-size: 14px;
+        padding: 10px;
+        border-radius: 10px;
+        margin:10px
+    }
+   
+
+</style>
 <div>
     <h1 align="center">
         Total Recall
@@ -6,7 +26,7 @@
 </div>    
 
 <div align="center">
-    <button id="start_button" onclick="startButton(event)">Start speaking</button>
+    <button id="start_button" onclick="startButton(event)" class="button">Start speaking</button>
 </div>
 <div align="center">
     <p id="info_speak_now" hidden>Speak now.</p>
@@ -15,7 +35,7 @@
         version 25 or later.
     </p>
 </div>
-<div id="results">
+<div id="results" class="results">
     <span id="final_span"></span> 
     <span id="interim_span"></span>
     <p>
@@ -39,11 +59,14 @@ if (!('webkitSpeechRecognition' in window)) {
   recognition.onstart = function() {
     console.log("onstart");   
     recognizing = true;
-    document.getElementById("info_speak_now").style.visibility = "visible";
+    document.getElementById("start_button").childNodes[0].nodeValue = "Save for recall";
+    document.getElementById("start_button").style.backgroundColor = "#cc0000";
   };
 
   recognition.onend = function() {
     recognizing = false;
+    document.getElementById("start_button").childNodes[0].nodeValue = "Start speaking";
+    document.getElementById("start_button").style.backgroundColor = "#000000";
     if (ignore_onend) {
       return;
     }
