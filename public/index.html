@@ -42,6 +42,14 @@ if (!('webkitSpeechRecognition' in window)) {
     document.getElementById("info_speak_now").style.visibility = "visible";
   };
 
+  recognition.onend = function() {
+    recognizing = false;
+    if (ignore_onend) {
+      return;
+    }
+  };
+
+
   recognition.onresult = function(event) {
     var interim_transcript = '';
     for (var i = event.resultIndex; i < event.results.length; ++i) {
