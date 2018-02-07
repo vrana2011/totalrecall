@@ -22,21 +22,10 @@ router.post('/', jsonParser, function(req, res, next) {
     return res.sendStatus(400);
   }
 
-  var test = req.body.test;
-  winston.log('info', test);
+  var transcript = req.body.transcript;
+  winston.log('info', transcript);
   res.send('respond with a resource from post');
-  /*
-  var bear = new Bear();      // create a new instance of the Bear model
-  bear.name = req.body.name;  // set the bears name (comes from the request)
 
-  // save the bear and check for errors
-  bear.save(function(err) {
-      if (err)
-          res.send(err);
-
-      res.json({ message: 'Bear created!' });
-  });
-  */
 });
 
 module.exports = router;
