@@ -7,7 +7,7 @@ var bodyParser = require('body-parser');
 
 // var index = require('./routes/index');
 var users = require('./routes/users');
-var listens = require('./routes/listens');
+var recordings = require('./routes/recordings');
 
 var app = express();
 
@@ -25,7 +25,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // app.use('/', index);
 app.use('/users', users);
-app.use('/listens', listens);
+app.use('/recordings', recordings);
 
 app.use(express.static(__dirname + '/public'));
 //Store all HTML files in public folder.
