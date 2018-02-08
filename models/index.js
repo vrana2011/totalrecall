@@ -30,7 +30,12 @@ if (process.env.DATABASE_URL) {
       database: postgres && postgres[5],
       username: postgres && postgres[1],
       password: postgres && postgres[2],
-      logging:  true //false
+      logging:  true, //false
+      ssl:      true,
+      dialectOptions: {
+        ssl: true
+      }
+   }
     })
 } else {
   // the application is executed on the local machine ... use mysql
