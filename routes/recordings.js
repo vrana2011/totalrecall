@@ -38,7 +38,7 @@ router.post('/', jsonParser, function(req, res, next) {
   }).catch((err) => {
     winston.log('error', err);
     res.sendStatus(400);
-  }
+  });
 
 
   
