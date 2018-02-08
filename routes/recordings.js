@@ -12,15 +12,17 @@ var db = require('../models');
 router.get('/', function(req, res, next) {
 
   // find multiple entries
+ let recordings;
  try {
-  db.Recordings.findAll({ include: [{ all: true }]}).then(recordings => {
-      winston.log('info', "first transcript title: " + recordings[0].title);
-      res.render('recordings', recordings);
+  recordings = db.Recordings.findAll({ include: [{ all: true }]}).then(recordings => {
 
     })
  } catch(err) {
     next(e);
  }
+
+ winston.log('info', "first transcript title: " + recordings[0].title);
+ res.render('recordings', recordings);
   //res.send('respond with a resource');
 });
 
