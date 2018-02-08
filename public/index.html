@@ -16,8 +16,13 @@
         border-radius: 10px;
         margin:10px
     }
-   
-
+    .info {
+        font-size: 20px;
+        text-align: center;
+        color: #777;
+        font-style: italic;
+        display: none;
+    }
 </style>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <div>
@@ -29,13 +34,14 @@
 <div align="center">
     <button id="start_button" onclick="startButton(event)" class="button">Start speaking</button>
 </div>
-<div align="center">
-    <p id="info_speak_now" hidden>Speak now.</p>
-    <p id="info_upgrade" hidden>Web Speech API is not supported by this browser.
-        Upgrade to <a href="//www.google.com/chrome">Chrome</a>
-        version 25 or later.
-    </p>
+
+<div id="info" style="visibility: visible;" align="center">
+        <p id="info_saved" class="info">Conversation saved for later recall.</p>
+        <p id="info_upgrade" class="info">Web Speech API is not supported by this browser.
+                Upgrade to <a href="//www.google.com/chrome">Chrome</a>
+                version 25 or later.</p>
 </div>
+    
 <div id="results" class="results">
     <span id="final_span"></span> 
     <span id="interim_span"></span>
@@ -84,9 +90,13 @@ if (!('webkitSpeechRecognition' in window)) {
         console.log(error);
     });
 
+    showInfo('info_saved');
     document.getElementById("start_button").childNodes[0].nodeValue = "Start speaking";
     document.getElementById("start_button").style.backgroundColor = "#000000";
-    
+
+    final_span.innerHTML = '';
+    interim_span.innerHTML = '';
+
     if (ignore_onend) {
       return;
     }
@@ -123,6 +133,7 @@ function startButton(event) {
   final_span.innerHTML = '';
   interim_span.innerHTML = '';
   start_timestamp = event.timeStamp;
+  hideInfo("info_saved");
 }
 
 var first_char = /\S/;
@@ -137,7 +148,41 @@ function linebreak(s) {
 }
 
 function upgrade() {
-    document.getElementById("info_upgrade").style.visibility = "visible";
+
+    start_button.style.visibility = 'hidden';
+    showInfo('info_upgrade');
+}
+
+function showInfo(s) {
+  console.log("in showInfo");
+  if (s) {
+    for (var child = info.firstChild; child; child = child.nextSibling) {
+  
+      if (child.style) {
+        child.style.display = child.id == s ? 'inline' : 'none';
+        console.log("child.style.display" + child.style.display);
+      }
+    }
+    info.style.visibility = 'visible';
+  } else {
+    info.style.visibility = 'hidden';
+  }
+}
+
+function hideInfo(s) {
+  console.log("in hideInfo");
+  if (s) {
+    for (var child = info.firstChild; child; child = child.nextSibling) {
+  
+      if (child.style) {
+          if(child.id == s) {
+            child.style.display = 'none';
+          }
+        console.log("child.style.display" + child.style.display);
+      }
+    }
+    info.style.visibility = 'hidden';
+  }
 }
 
 </script>
