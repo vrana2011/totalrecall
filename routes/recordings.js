@@ -29,19 +29,22 @@ router.post('/', jsonParser, function(req, res, next) {
   var titleTS = "conversation_" + datetime.create().format('m/d/y H:M:S');
   
   winston.log('info', titleTS);
+  
+  if (db) {
+    db.Recordings.create({
+      title: titleTS,
+      transcript: transcriptPost
+    }).then(recordings => {
+      
+      res.send('respond with a resource from post');
 
-  db.Recordings.create({
-    title: titleTS,
-    transcript: transcriptPost
-  }).then(recordings => {
-    
-    res.send('respond with a resource from post');
-
-  }).catch((err) => {
-    winston.log('info', "caught an error: " + err);
-    res.sendStatus(400);
-  });
-
+    }).catch((err) => {
+      winston.log('info', "caught an error: " + err);
+      res.sendStatus(400);
+    });
+   } else {
+    winston.log('info', "db does not exist");
+   }; 
 
   
 
