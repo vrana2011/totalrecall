@@ -10,7 +10,14 @@ var db = require('../models');
 
 /* GET recordings. */
 router.get('/', function(req, res, next) {
+
+  // find multiple entries
+  db.Recordings.findAll({ include: [{ all: true }]}).then(recordings => {
+    winston.log('info', "first transcript" + recordings[0]);
+  })
+
   res.send('respond with a resource');
+
 });
 
 
@@ -30,6 +37,7 @@ router.post('/', jsonParser, function(req, res, next) {
   
   winston.log('info', titleTS);
   
+  // TODO - remove sequelize sync
   db.sequelize.sync().then(function() {
     db.Recordings.create({
       title: titleTS,
