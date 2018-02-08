@@ -12,11 +12,12 @@ var db = require('../models');
 router.get('/', function(req, res, next) {
 
   // find multiple entries
-  db.Recordings.findAll({ include: [{ all: true }]}).then(recordings => {
-    winston.log('info', "first transcript: title" + recordings[0].title);
+  var recordings = db.Recordings.findAll({ include: [{ all: true }]}).then(recordings => {
+    winston.log('info', "first transcript title: " + recordings[0].title);
   })
 
-  res.send('respond with a resource');
+  //res.send('respond with a resource');
+  res.render('recordings', { recordings: recordings });
 
 });
 
@@ -38,7 +39,7 @@ router.post('/', jsonParser, function(req, res, next) {
   winston.log('info', titleTS);
   
   // TODO - remove sequelize sync
-  db.sequelize.sync().then(function() {
+//  db.sequelize.sync().then(function() {
     db.Recordings.create({
       title: titleTS,
       transcript: transcriptPost
@@ -50,7 +51,7 @@ router.post('/', jsonParser, function(req, res, next) {
       winston.log('info', "caught an error: " + err);
       res.sendStatus(400);
     });
-   }); 
+//   }); 
   
 
 });
