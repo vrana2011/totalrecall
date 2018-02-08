@@ -35,7 +35,6 @@ if (process.env.DATABASE_URL) {
       dialectOptions: {
         ssl: true
       }
-   }
     })
 } else {
   // the application is executed on the local machine ... use mysql
