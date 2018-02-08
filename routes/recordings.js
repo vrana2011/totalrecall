@@ -17,8 +17,8 @@ router.get('/', function(req, res, next) {
 
 
   winston.log('info', "first transcript title: " + recordings[0].title);
-  res.render('recordings', recordings);
-  //res.send('respond with a resource');
+  //res.render('recordings', recordings);
+  res.send('respond with a resource');
 });
 
 
