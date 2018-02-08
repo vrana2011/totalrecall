@@ -17,11 +17,18 @@ if (config.use_env_variable) {
 
 if (process.env.DATABASE_URL) {
   // the application is executed on Heroku ... use the postgres database
+
+  var postgres = process.env.DATABASE_URL && process.env.DATABASE_URL.match(/postgres:\/\/([^:]+):([^@]+)@([^:]+):(\d+)\/(.+)/);
+  
+
   sequelize = new Sequelize(process.env.DATABASE_URL, {
     dialect:  'postgres',
     protocol: 'postgres',
-    port:     match[4],
-    host:     match[3],
+    port:     postgres && postgres[4],
+    host:     postgres && postgres[3],
+    database: postgres && postgres[5],
+    username: postgres && postgres[1],
+    password: postgres && postgres[2],
     logging:  true //false
   })
 } else {
