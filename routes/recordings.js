@@ -15,10 +15,10 @@ router.get('/', function(req, res, next) {
 
   db.Recordings.findAll({ include: [{ all: true }]}).then(recordings => {
     winston.log('info', "first transcript title: " + recordings[0].title);
+    //res.render('recordings', recordings);
+    res.send('respond with a resource');
   });
-  
-  //res.render('recordings', recordings);
-  res.send('respond with a resource');
+
 });
 
 
