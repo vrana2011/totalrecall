@@ -13,7 +13,7 @@ router.get('/', function(req, res, next) {
 
   // find multiple entries
   db.Recordings.findAll({ include: [{ all: true }]}).then(recordings => {
-    winston.log('info', "first transcript" + recordings[0]);
+    winston.log('info', "first transcript: title" + recordings[0].title);
   })
 
   res.send('respond with a resource');
