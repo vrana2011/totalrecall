@@ -1,5 +1,5 @@
 'use strict';
-
+const winston = require('winston');
 var fs        = require('fs');
 var path      = require('path');
 var Sequelize = require('sequelize');
@@ -20,6 +20,9 @@ if (process.env.DATABASE_URL) {
 
   var postgres = process.env.DATABASE_URL && process.env.DATABASE_URL.match(/postgres:\/\/([^:]+):([^@]+)@([^:]+):(\d+)\/(.+)/);
   
+  winston.log('info', 'postgres connection parsed', postgres);
+
+
 
   sequelize = new Sequelize(process.env.DATABASE_URL, {
     dialect:  'postgres',
