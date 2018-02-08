@@ -28,6 +28,8 @@ router.post('/', jsonParser, function(req, res, next) {
   
   var titleTS = "conversation_" + datetime.create().format('m/d/y H:M:S');
   
+  winston.log('info', titleTS);
+
   db.Recordings.create({
     title: titleTS,
     transcript: transcriptPost
@@ -36,7 +38,7 @@ router.post('/', jsonParser, function(req, res, next) {
     res.send('respond with a resource from post');
 
   }).catch((err) => {
-    winston.log('error', err);
+    winston.log('info', "caught an error: " + err);
     res.sendStatus(400);
   });
 
