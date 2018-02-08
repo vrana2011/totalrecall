@@ -2,6 +2,7 @@ const winston = require('winston');
 var express = require('express');
 var bodyParser = require('body-parser');
 var router = express.Router();
+var datetime = require('node-datetime');
 
 var jsonParser = bodyParser.json();
 
@@ -22,9 +23,25 @@ router.post('/', jsonParser, function(req, res, next) {
     return res.sendStatus(400);
   }
 
-  var transcript = req.body.transcript;
-  winston.log('info', transcript);
-  res.send('respond with a resource from post');
+  var transcriptPost = req.body.transcript;
+  winston.log('info', transcriptPost);
+  
+  var titleTS = "conversation_" + datetime.create().format('m/d/y H:M:S');
+  
+  db.Recordings.create({
+    title: titleTS,
+    transcript: transcriptPost
+  }).then(recordings => {
+    
+    res.send('respond with a resource from post');
+
+  }).catch((err) => {
+    winston.log('error', err);
+    res.sendStatus(400);
+  }
+
+
+  
 
 });
 
