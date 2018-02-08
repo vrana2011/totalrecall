@@ -15,7 +15,7 @@ router.get('/', function(req, res, next) {
  try {
   db.Recordings.findAll({ include: [{ all: true }]}).then(recordings => {
       winston.log('info', "first transcript title: " + recordings[0].title);
-      res.render('recordings', { recordingsList: recordings });
+      res.render('recordings', recordings);
 
     })
  } catch(err) {
