@@ -5,7 +5,7 @@ var router = express.Router();
 var datetime = require('node-datetime');
 
 var jsonParser = bodyParser.json();
-
+var db = require('../models');
 
 
 /* GET recordings. */
@@ -30,7 +30,7 @@ router.post('/', jsonParser, function(req, res, next) {
   
   winston.log('info', titleTS);
   
-  if (db) {
+  db.sequelize.sync().then(function() {
     db.Recordings.create({
       title: titleTS,
       transcript: transcriptPost
@@ -42,10 +42,7 @@ router.post('/', jsonParser, function(req, res, next) {
       winston.log('info', "caught an error: " + err);
       res.sendStatus(400);
     });
-   } else {
-    winston.log('info', "db does not exist");
-   }; 
-
+   }); 
   
 
 });
