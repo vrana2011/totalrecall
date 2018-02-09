@@ -4,6 +4,9 @@ block content
 
     h1 Your past conversations
 
+    form(action="/recordings")
+    input#(type="search", name="searchRecordings")
+    
     ol
     each recording in recordingsList
         li= recording.title
