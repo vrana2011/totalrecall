@@ -16,6 +16,9 @@ router.get('/', function(req, res, next) {
 
   db.Recordings.findAll({ include: [{ all: true }]}).then(recordings => {
     winston.log('info', "first transcript title: " + recordings[0].title);
+    winston.log('info', recordings.get({
+      plain: true
+    }))
     res.render('recordings', {recordingsList: recordings});
     //res.send('respond with a resource');
   });
@@ -52,6 +55,8 @@ router.post('/', jsonParser, function(req, res, next) {
       winston.log('info', "caught an error: " + err);
       res.sendStatus(400);
     });
+
+
 //   }); 
   
 
