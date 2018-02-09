@@ -43,7 +43,7 @@ router.get('/', function(req, res, next) {
         var titleResult = content.hits[h].title;
         console.log('title: ' + titleResult);
         var recording = [{title: titleResult}]; 
-        recordings.push(recording);
+        recordingsList.push(recording);
       }
     });
     
