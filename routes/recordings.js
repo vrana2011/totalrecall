@@ -42,7 +42,7 @@ router.get('/', function(req, res, next) {
     
       for (var h in content.hits) {
         console.log(
-          `Hit(${content.hits[h].objectID}): ${content.hits[h].transcript}`
+          `Hit(${content.hits[h].objectID}): ${content.hits[h].toJSON}`
         );
         var titleResult = content.hits[h].title;
         var transcriptResult = content.hits[h]._highlightResult.value;
