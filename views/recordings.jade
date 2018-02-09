@@ -5,7 +5,8 @@ block content
     h1 Your past conversations
 
     form(action="/recordings")
-    input(type="search", name="searchRecordings")
+        input(type="search", value="search your conversations", name="searchTranscripts") 
+        input(type="submit")
     
     ol
     each recording in recordingsList
