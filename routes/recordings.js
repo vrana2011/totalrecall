@@ -28,6 +28,7 @@ router.get('/', function(req, res, next) {
   var recordings = [];
   if(q === null || typeof q === "undefined") {
     winston.log('info', 'query string null or undefined: ' + q);
+    res.render('recordings', {recordingsList: recordings});
   } else {
     
     index.search({ query: q }, function searchDone(err, content) {
@@ -45,6 +46,8 @@ router.get('/', function(req, res, next) {
         var recording = [{title: titleResult}]; 
         recordings.push(recording);
       }
+      console.log('recordings before render: ' + recordings);
+      res.render('recordings', {recordingsList: recordings});
     });
     
 
@@ -56,8 +59,7 @@ router.get('/', function(req, res, next) {
     winston.log('info', "first transcript title: " + recordings[1].title);
     id = recordings[1].id;
   */
-  console.log('recordings before render: ' + recordings)
-  res.render('recordings', {recordingsList: recordings});
+
     
     /* db.Recordings.findById(id).then(oneRecording => {
 
