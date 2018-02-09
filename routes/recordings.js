@@ -3,6 +3,7 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var router = express.Router();
 var datetime = require('node-datetime');
+var algoliasearch = require('algoliasearch');
 
 var jsonParser = bodyParser.json();
 var db = require('../models');
