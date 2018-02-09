@@ -8,7 +8,7 @@ block content
         input(type="search", placeholder="search your conversations", name="q", size="100", style="font-size: 24px;") 
         input(type="submit" style="font-size: 24px;")
     
-    if recordingsList
+    if recordingsList.length > 0
         h2 Past conversations
         ol
         each recording in recordingsList
