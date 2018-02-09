@@ -42,8 +42,9 @@ router.get('/', function(req, res, next) {
           `Hit(${content.hits[h].objectID}): ${content.hits[h].transcript}`
         );
         var titleResult = content.hits[h].title;
+        var transcriptResult = content.hits[h].transcript;
         console.log('title: ' + titleResult);
-        recordings.push({title: titleResult});
+        recordings.push([{title: titleResult, transcript: transcriptResult}]);
       }
       //console.log('recordings before render: ' + recordings[0].title);
       res.render('recordings', {recordingsList: recordings});
