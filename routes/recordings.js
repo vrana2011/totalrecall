@@ -16,13 +16,35 @@ index.setSettings({
   ]
 }, function(err, content) {
   winston.log('info', 'error ' + err);
-});
+}); 
 
 /* GET recordings. */
 router.get('/', function(req, res, next) {
 
   var q = req.query.q;
   winston.log('info', 'query string: ' + q);
+  
+  // search
+  if(q === null || typeof q === "undefined") {
+    winston.log('info', 'query string null or undefined: ' + q);
+  } else {
+    
+    index.search({ query: q }, function searchDone(err, content) {
+      if (err) {
+        console.error(err);
+        return;
+      }
+    
+      for (var h in content.hits) {
+        console.log(
+          `Hit(${content.hits[h].objectID}): ${content.hits[h].toString()}`
+        );
+      }
+    });
+    
+
+  }
+  
   // find multiple entries
 
   /*db.Recordings.findAll({ include: [{ all: true }]}).then(recordings => {
