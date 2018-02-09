@@ -16,8 +16,8 @@ router.get('/', function(req, res, next) {
   // find multiple entries
 
   db.Recordings.findAll({ include: [{ all: true }]}).then(recordings => {
-    winston.log('info', "first transcript title: " + recordings[0].title);
-    id = recordings[0].id;
+    winston.log('info', "first transcript title: " + recordings[1].title);
+    id = recordings[1].id;
     res.render('recordings', {recordingsList: recordings});
     
     db.Recordings.findById(id).then(oneRecording => {
