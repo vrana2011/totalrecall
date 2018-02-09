@@ -19,10 +19,8 @@ router.get('/', function(req, res, next) {
     id = recordings[0].id;
     res.render('recordings', {recordingsList: recordings});
     
-    db.Recordings.findById(id, {
-      plain: true
-    }).then(oneRecording => {
-      console.log(oneRecording);
+    db.Recordings.findById(id).then(oneRecording => {
+      console.log(oneRecording.toJSON());
     })
     
     //res.send('respond with a resource');
