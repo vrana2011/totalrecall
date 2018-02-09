@@ -25,7 +25,7 @@ router.get('/', function(req, res, next) {
   winston.log('info', 'query string: ' + q);
   
   // search
-  var recordingsList = [];
+  var recordings = [];
   if(q === null || typeof q === "undefined") {
     winston.log('info', 'query string null or undefined: ' + q);
   } else {
@@ -43,7 +43,7 @@ router.get('/', function(req, res, next) {
         var titleResult = content.hits[h].title;
         console.log('title: ' + titleResult);
         var recording = [{title: titleResult}]; 
-        recordingsList.push(recording);
+        recordings.push(recording);
       }
     });
     
