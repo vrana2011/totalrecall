@@ -43,8 +43,7 @@ router.get('/', function(req, res, next) {
         );
         var titleResult = content.hits[h].title;
         console.log('title: ' + titleResult);
-        var recording = [{title: titleResult}]; 
-        recordings.push(recording);
+        recordings.push({title: titleResult});
       }
       //console.log('recordings before render: ' + recordings[0].title);
       res.render('recordings', {recordingsList: recordings});
