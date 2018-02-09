@@ -13,16 +13,15 @@ var db = require('../models');
 router.get('/', function(req, res, next) {
 
   // find multiple entries
-
+  var id;
   db.Recordings.findAll({ include: [{ all: true }]}).then(recordings => {
     winston.log('info', "first transcript title: " + recordings[0].title);
-    winston.log('info', recordings.get({
-      plain: true
-    }))
+    id = recordings[0].id;
     res.render('recordings', {recordingsList: recordings});
     //res.send('respond with a resource');
   });
 
+  winston.log('info', "id of first record: " + id);
 });
 
 
