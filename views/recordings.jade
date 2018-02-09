@@ -8,8 +8,9 @@ block content
         input(type="search", placeholder="search your conversations", name="q", size="100", style="font-size: 24px;") 
         input(type="submit" style="font-size: 24px;")
     
-    h2 Past conversations
-    ol
-    each recording in recordingsList
-        li= recording.title
+    if recordingsList
+        h2 Past conversations
+        ol
+        each recording in recordingsList
+            li= recording.title
  
