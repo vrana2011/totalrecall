@@ -46,7 +46,7 @@ router.get('/', function(req, res, next) {
         var recording = [{title: titleResult}]; 
         recordings.push(recording);
       }
-      console.log('recordings before render: ' + recordings[0].title);
+      //console.log('recordings before render: ' + recordings[0].title);
       res.render('recordings', {recordingsList: recordings});
     });
     
