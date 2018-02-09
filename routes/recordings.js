@@ -24,7 +24,7 @@ router.get('/', function(req, res, next) {
 
       var recordingJSON = oneRecording.toJSON();
       console.log(recordingJSON);
-      algoliaclient.initIndex('recordingsIndex');
+      var index = algoliaclient.initIndex('recordingsIndex');
 
       index.addObject(recordingJSON, function(err, content) {
         console.log('objectID=' + content.objectID);
