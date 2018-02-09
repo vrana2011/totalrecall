@@ -21,6 +21,7 @@ router.get('/', function(req, res, next) {
     winston.log('info', "first transcript title: " + recordings[1].title);
     id = recordings[1].id;
   */
+  var recordings = [{}];
     res.render('recordings', {recordingsList: recordings});
     
     /* db.Recordings.findById(id).then(oneRecording => {
