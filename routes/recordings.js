@@ -9,6 +9,14 @@ var algoliaclient = algoliasearch(process.env.ALGOLIASEARCH_APPLICATION_ID, proc
 var jsonParser = bodyParser.json();
 var db = require('../models');
 
+var index = algoliaclient.initIndex('recordingsIndex');
+index.setSettings({
+  'searchableAttributes': [
+    'transcript'
+  ]
+}, function(err, content) {
+  winston.log('info', 'error ' + err);
+});
 
 /* GET recordings. */
 router.get('/', function(req, res, next) {
@@ -28,7 +36,7 @@ router.get('/', function(req, res, next) {
 
       var recordingJSON = oneRecording.toJSON();
       console.log(recordingJSON);
-      var index = algoliaclient.initIndex('recordingsIndex');
+      
 
       index.addObject(recordingJSON, function(err, content) {
         console.log('objectID=' + content.objectID);
