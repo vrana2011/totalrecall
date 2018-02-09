@@ -4,6 +4,7 @@ var bodyParser = require('body-parser');
 var router = express.Router();
 var datetime = require('node-datetime');
 var algoliasearch = require('algoliasearch');
+var algoliaclient = algoliasearch(process.env.ALGOLIASEARCH_APPLICATION_ID, process.env.ALGOLIASEARCH_API_KEY);
 
 var jsonParser = bodyParser.json();
 var db = require('../models');
@@ -20,7 +21,14 @@ router.get('/', function(req, res, next) {
     res.render('recordings', {recordingsList: recordings});
     
     db.Recordings.findById(id).then(oneRecording => {
-      console.log(oneRecording.toJSON());
+
+      var recordingJSON = oneRecording.toJSON();
+      console.log(recordingJSON);
+      algoliaclient.initIndex('recordingsIndex');
+
+      index.addObject(recordingJSON, function(err, content) {
+        console.log('objectID=' + content.objectID);
+      });
     })
     
     //res.send('respond with a resource');
