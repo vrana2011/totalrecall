@@ -37,7 +37,7 @@ router.get('/', function(req, res, next) {
     
       for (var h in content.hits) {
         console.log(
-          `Hit(${content.hits[h].objectID}): ${content.hits[h].toString()}`
+          `Hit(${content.hits[h].objectID}): ${content.hits[h].transcript}`
         );
       }
     });
