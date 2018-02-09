@@ -49,7 +49,7 @@ router.get('/', function(req, res, next) {
         console.log('title: ' + titleResult);
         recordings.push([{title: titleResult, transcript: transcriptResult}]);
       }
-      //console.log('recordings before render: ' + recordings[0].title);
+     
       res.render('recordings', {recordingsList: recordings});
     });
     
