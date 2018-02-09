@@ -41,6 +41,7 @@ router.get('/', function(req, res, next) {
           `Hit(${content.hits[h].objectID}): ${content.hits[h].transcript}`
         );
         var titleResult = content.hits[h].title;
+        console.log('title: ' + titleResult);
         recordings.push({title, titleResult});
       }
     });
