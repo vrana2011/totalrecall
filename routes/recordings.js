@@ -14,6 +14,9 @@ index.setSettings({
   'searchableAttributes': [
     'transcript'
   ],
+  'attributesToHighlight': [
+    'transcript'
+  ]
 }, function(err, content) {
   winston.log('info', 'error ' + err);
 }); 
