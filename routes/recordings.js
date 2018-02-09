@@ -13,14 +13,17 @@ var db = require('../models');
 /* GET recordings. */
 router.get('/', function(req, res, next) {
 
+  var q = req.query.q;
+  winston.log('info', 'query string: ' + q);
   // find multiple entries
 
-  db.Recordings.findAll({ include: [{ all: true }]}).then(recordings => {
+  /*db.Recordings.findAll({ include: [{ all: true }]}).then(recordings => {
     winston.log('info', "first transcript title: " + recordings[1].title);
     id = recordings[1].id;
+  */
     res.render('recordings', {recordingsList: recordings});
     
-    db.Recordings.findById(id).then(oneRecording => {
+    /* db.Recordings.findById(id).then(oneRecording => {
 
       var recordingJSON = oneRecording.toJSON();
       console.log(recordingJSON);
@@ -28,11 +31,11 @@ router.get('/', function(req, res, next) {
 
       index.addObject(recordingJSON, function(err, content) {
         console.log('objectID=' + content.objectID);
-      });
-    })
+      });*/
+    //})
     
-    //res.send('respond with a resource');
-  });
+    res.send('respond with a resource');
+  //});
 
 });
 
