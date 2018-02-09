@@ -13,7 +13,7 @@ var index = algoliaclient.initIndex('recordingsIndex');
 index.setSettings({
   'searchableAttributes': [
     'transcript'
-  ]
+  ],
 }, function(err, content) {
   winston.log('info', 'error ' + err);
 }); 
@@ -100,6 +100,14 @@ router.post('/', jsonParser, function(req, res, next) {
       title: titleTS,
       transcript: transcriptPost
     }).then(recordings => {
+
+      var recordingJSON = recordings.toJSON();
+      console.log(recordingJSON);
+      
+
+      index.addObject(recordingJSON, function(err, content) {
+        console.log('objectID=' + content.objectID);
+      });
       
       res.send('respond with a resource from post');
 
