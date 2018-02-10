@@ -38,9 +38,8 @@ if (process.env.DATABASE_URL) {
     })
 } else {
   // the application is executed on the local machine ... use mysql
-  sequelize = new Sequelize('example-app-db', 'root', null)
+  sequelize = new Sequelize('totalrecall_development', 'root', null, config)
 }
-
 
 fs
   .readdirSync(__dirname)
