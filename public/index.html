@@ -26,12 +26,6 @@
 </style>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <div>
-    <nav>
-        <a href="index.html">Home</a></li>
-        <a href="/recordings/">Search past conversations</a>
-    </nav>
-</div>
-<div>
     <h1 align="center">
         Total Recall
     </h1>
@@ -40,7 +34,9 @@
 <div align="center">
     <button id="start_button" onclick="startButton(event)" class="button">Start speaking</button>
 </div>
-
+<div>
+    <a href="/recordings/">Search your past conversations</a>
+</div>
 <div id="info" style="visibility: visible;" align="center">
         <p id="info_saved" class="info">Conversation saved for later recall.</p>
         <p id="info_upgrade" class="info">Web Speech API is not supported by this browser.
