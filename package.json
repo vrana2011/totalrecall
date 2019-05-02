@@ -6,7 +6,7 @@
     "start": "node ./bin/www"
   },
   "engines": {
-    "node": "10.x"
+    "node": "9.5.0"
   },
   "dependencies": {
     "algoliasearch": "^3.24.11",
