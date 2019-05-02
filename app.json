@@ -1,0 +1,40 @@
+{
+  "addons": [
+    "algoliasearch",
+    "heroku-postgresql"
+  ],
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    },
+    {
+      "url": "https://github.com/heroku/heroku-nodejs-metrics-buildpack"
+    }
+  ],
+  "env": {
+    "ALGOLIASEARCH_API_KEY": {
+      "required": true
+    },
+    "ALGOLIASEARCH_API_KEY_SEARCH": {
+      "required": true
+    },
+    "ALGOLIASEARCH_APPLICATION_ID": {
+      "required": true
+    },
+    "FOO": {
+      "required": true
+    },
+    "NODE_ENV": {
+      "required": true
+    }
+  },
+  "formation": {
+    "web": {
+      "quantity": 1
+    }
+  },
+  "name": "totalrecall",
+  "scripts": {
+  },
+  "stack": "heroku-16"
+}
