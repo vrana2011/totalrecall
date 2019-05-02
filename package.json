@@ -7,7 +7,7 @@
   },
   "engines": {
     "node": "10.x"
-  }
+  },
   "dependencies": {
     "algoliasearch": "^3.24.11",
     "body-parser": "^1.18.2",
