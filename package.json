@@ -6,7 +6,7 @@
     "start": "node ./bin/www"
   },
   "engines": {
-    "node": "9.5.0" # required
+    "node": "9.5.0" 
   },
   "dependencies": {
     "@types/node": "^11.13.9",
