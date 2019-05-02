@@ -6,6 +6,7 @@
     "start": "node ./bin/www"
   },
   "dependencies": {
+    "@types/node": "^11.13.9",
     "algoliasearch": "^3.24.11",
     "body-parser": "^1.18.2",
     "cookie-parser": "~1.4.3",
